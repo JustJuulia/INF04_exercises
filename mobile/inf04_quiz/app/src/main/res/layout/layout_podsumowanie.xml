@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_podsumowanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PODSUMOWANIE"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_iloscodp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ilość poprawnych odpowiedzi na wszystkie pytania" />
+
+    <TextView
+        android:id="@+id/text_wynik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0 / 10"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/button_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resetuj" />
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_pytanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PYTANIE"
+        android:textSize="24sp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RadioButton
+            android:id="@+id/radio_odp1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Odp 1" />
+
+        <RadioButton
+            android:id="@+id/radio_odp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Odp 2" />
+
+        <RadioButton
+            android:id="@+id/radio_odp3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Odp 3" />
+    </RadioGroup>
+
+</LinearLayout>
