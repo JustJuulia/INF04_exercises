@@ -1,0 +1,11 @@
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\bin\Debug\inf04_akcje_na_plikach.exe.config
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\bin\Debug\inf04_akcje_na_plikach.exe
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\bin\Debug\inf04_akcje_na_plikach.pdb
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.csproj.AssemblyReference.cache
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.csproj.SuggestedBindingRedirects.cache
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.Form1.resources
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.Properties.Resources.resources
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.csproj.GenerateResource.cache
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.csproj.CoreCompileInputs.cache
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.exe
+C:\Users\julia\source\repos\inf04_akcje_na_plikach\inf04_akcje_na_plikach\obj\Debug\inf04_akcje_na_plikach.pdb
