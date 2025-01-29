@@ -53,7 +53,6 @@ function App() {
         <input className='form-check-input' type='checkbox' defaultChecked={zwierzeta} onChange={ () => { setZwierzeta(!zwierzeta) } } /> Zwierzeta 
         <input className='form-check-input' type='checkbox' defaultChecked={samochody} onChange={ () => { setSamochody(!samochody) } } /> Samochody 
       </div>
-
       {
         data.map(( element, index ) => {
           if (!kwiaty && element.category === 1) { return null; }

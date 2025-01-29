@@ -9,6 +9,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,22 +26,29 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        ListView mojalista = findViewById(R.id.pytanie_listview);
-        String[] pytanie = {"Czy Francja istnieje", "Ile to 2+ 10", "Random pytanie"};
-        String[] odp_1 = {"Nie", "2137 jol", "Francja nigdy nie istaniala i nigdy nie bedzie istniec to stan umyslu"};
-        String[] odp_2 = {"Może", "210", "Ta odp powinna byc poprawna"};
-        String[] odp_3 = {"Francja nigdy nie istaniala i nigdy nie bedzie istniec to stan umyslu", "ass", "Odpowiedź 3"};
-        Integer[] poprawna_odp = {1, 2, 3};
-        pytanieModel adapter = new pytanieModel(
-                this,
-                R.layout.layout_pytanie,
-                pytanie,
-                odp_1,
-                odp_2,
-                odp_3,
-                poprawna_odp
-        );
 
+        ListView mojalista = findViewById(R.id.pytanie_listview);
+        List<String[]> listaPytan = generujPytania();
+        pytanieModel adapter = new pytanieModel(this, R.layout.layout_pytanie, listaPytan);
         mojalista.setAdapter(adapter);
+    }
+    private List<String[]> generujPytania() {
+        List<String[]> pytania = new ArrayList<>();
+        String[][] danePytan = {
+                {"Jaki język programowania jest używany do tworzenia aplikacji na Androida?", "Java", "Python", "C#", "1"},
+                {"Który język jest używany do tworzenia aplikacji webowych?", "HTML", "C#", "Java", "1"},
+                {"Jakie jest największe miasto w Polsce?", "Warszawa", "Kraków", "Wrocław", "1"},
+                {"Jaka jest stolica Francji?", "Berlin", "Madryt", "Paryż", "3"},
+                {"Kto wynalazł telefon?", "Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "1"},
+                {"Który z tych systemów operacyjnych jest używany na komputerach Apple?", "Windows", "macOS", "Linux", "2"},
+                {"Jakie jest najbliższe ciało niebieskie Ziemi?", "Mars", "Słońce", "Księżyc", "3"},
+                {"Jaki jest największy ocean na świecie?", "Ocean Atlantycki", "Ocean Spokojny", "Ocean Indyjski", "2"},
+                {"Które z tych zwierząt jest ssakiem?", "Krokodyl", "Pies", "Żaba", "2"},
+                {"Co to jest HTML?", "Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlink Markup Language", "1"}
+        };
+        for (int i = 0; i < 10; i++) {
+            pytania.add(danePytan[i]);
+        }
+        return pytania;
     }
 }
