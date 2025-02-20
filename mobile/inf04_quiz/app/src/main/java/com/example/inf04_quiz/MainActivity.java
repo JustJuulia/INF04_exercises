@@ -1,7 +1,12 @@
 package com.example.inf04_quiz;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +16,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    private int aktualnyWynik = 0;
+    private TextView wynikTextView;
+    private FrameLayout podsumowanieContainer;
+    private View podsumowanieView;
+    private pytanieModel adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +41,23 @@ public class MainActivity extends AppCompatActivity {
 
         ListView mojalista = findViewById(R.id.pytanie_listview);
         List<String[]> listaPytan = generujPytania();
-        pytanieModel adapter = new pytanieModel(this, R.layout.layout_pytanie, listaPytan);
+
+
+        LayoutInflater inflater = getLayoutInflater();
+        View footerView = inflater.inflate(R.layout.layout_podsumowanie, mojalista, false);
+        mojalista.addFooterView(footerView);
+
+        wynikTextView = footerView.findViewById(R.id.text_wynik);
+
+        pytanieModel adapter = new pytanieModel(this, R.layout.layout_pytanie, listaPytan, wynikTextView);
         mojalista.setAdapter(adapter);
+        Button resetButton = footerView.findViewById(R.id.button_reset);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.resetujOdpowiedzi();
+            }
+        });
     }
     private List<String[]> generujPytania() {
         List<String[]> pytania = new ArrayList<>();
@@ -51,4 +78,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return pytania;
     }
+
+
 }
