@@ -1,23 +1,23 @@
 class Notatka():
     __licznik = 0
-    def __init__(self, tytul, tresc):
+    def __init__(self, _tytul, _tresc):
         Notatka.__licznik += 1
-        self.id = Notatka.__licznik
-        self.tytul = tytul
-        self.tresc = tresc
+        self.__id = Notatka.__licznik
+        self._tytul = _tytul
+        self._tresc = _tresc
     def wyswietl(self):
-        print('WYSWIETLANIE: tytul: '+self.tytul+'tresc:'+self.tresc)
+        print('WYSWIETLANIE: tytul: '+self._tytul+'tresc:'+self._tresc)
     def diagnostyczna(self):
-        print(f' DIAGNOSTGYCZNA: tytul: {self.tytul};tresc: {self.tresc};licznik: {Notatka.__licznik};id: {self.id}')
+        print(f' DIAGNOSTGYCZNA: tytul: {self._tytul};tresc: {self._tresc};licznik: {Notatka.__licznik};id: {self.__id}')
     def zapis_do_pliku(self, nazwa_p):
         f = open(nazwa_p, 'w')
-        f.write(f'{self.tytul}\n{self.tresc}')
+        f.write(f'{self._tytul}\n{self._tresc}')
         f.close()
     def odczyt_z_pliku(self, nazwa_p):
         f = open(nazwa_p, 'r')
-        self.tytul = f.readline()
+        self._tytul = f.readline()
         for l in f:
-            self.tresc = self.tresc + l
+            self._tresc = self._tresc + l
         f.close()
 tytul1 = input('podaj tytul: ')
 tresc1 = input('podaj tresc: ')
