@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,5 +37,24 @@ public class AdminActivity extends AppCompatActivity {
         List<User> userList = userDatabase.getAllUsers();
         UserListAdapter adapter = new UserListAdapter(this, userList, login);
         all_people.setAdapter(adapter);
+        String userLogin = getIntent().getStringExtra("USER_LOGIN");
+        String userPassword = getIntent().getStringExtra("USER_PASSWORD");
+        String userName = getIntent().getStringExtra("USER_NAME");
+        String userSurname = getIntent().getStringExtra("USER_SURNAME");
+        boolean isAdmin = getIntent().getBooleanExtra("USER_ADMIN", false);
+        EditText im = findViewById(R.id.a_imie);
+        EditText nz = findViewById(R.id.a_nazwisko);
+        EditText lg = findViewById(R.id.a_login);
+        EditText ps = findViewById(R.id.a_passw);
+        CheckBox ca = findViewById(R.id.checkBox);
+        im.setText(userName);
+        nz.setText(userSurname);
+        lg.setText(userLogin);
+        ps.setText(userPassword);
+        ca.setChecked(isAdmin);
+
+
+
+
     }
 }
