@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -56,12 +58,44 @@ public class AdminActivity extends AppCompatActivity {
         String userSurname = getIntent().getStringExtra("USER_SURNAME");
         boolean isAdmin = getIntent().getBooleanExtra("USER_ADMIN", false);
         boolean isFirst = getIntent().getBooleanExtra("IsFirst", false);
-        
-        im.setText(userName);
-        nz.setText(userSurname);
-        lg.setText(userLogin);
-        ps.setText(userPassword);
-        ca.setChecked(isAdmin);
+        if(isFirst){
+            dodaj.setEnabled(false);
+            usun.setEnabled(false);
+            wyjdz.setEnabled(false);
+            all_people.setEnabled(false);
+            zmien.setEnabled(false);
+            ps.setText("admin");
+            TextWatcher adm_tw = new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    zmien.setEnabled(true);
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+
+            };
+            ps.addTextChangedListener(adm_tw);
+        }
+        else {
+            dodaj.setEnabled(true);
+            usun.setEnabled(true);
+            wyjdz.setEnabled(true);
+            all_people.setEnabled(true);
+            zmien.setEnabled(true);
+            im.setText(userName);
+            nz.setText(userSurname);
+            lg.setText(userLogin);
+            ps.setText(userPassword);
+            ca.setChecked(isAdmin);
+        }
 
         dodaj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +127,12 @@ public class AdminActivity extends AppCompatActivity {
         zmien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(isFirst){
+                    AllUsers userDatabase = AllUsers.getInstance();
+                    userDatabase.changeTheUser(ps.getText().toString());
+                    finish();
+                    startActivity(getIntent());
+                }
                 AllUsers userDatabase = AllUsers.getInstance();
                 userDatabase.changeUser(lg.getText().toString(), ps.getText().toString(), im.getText().toString(), nz.getText().toString(), ca.isChecked());
                 finish();

@@ -41,6 +41,16 @@ public class AllUsers {
             }
         }
     }
+    public void changeTheUser(String password){
+        for(User user : users){
+            if((user.getLogin().equals("admin")) || (user.name.equals("Admin") && user.surname.equals("User"))){
+                users.remove(user);
+                User my_changed = new User("admin", password, "Admin", "User",true);
+                users.add(my_changed);
+                break;
+            }
+        }
+    }
     public List<User> getAllUsers() {
         return users;
     }
