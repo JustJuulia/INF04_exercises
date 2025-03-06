@@ -16,7 +16,13 @@ public class AllUsers {
     public void addUser(User user) {
         users.add(user);
     }
-
+    public void delteUser(String login){
+        for(User user: users){
+            if(user.getLogin().equals(login)){
+                users.remove(user);
+            }
+        }
+    }
     public User login(String login, String password) {
         for (User user : users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
@@ -25,7 +31,16 @@ public class AllUsers {
         }
         return null;
     }
-
+    public void changeUser(String login, String password, String name, String surname, Boolean isAdmin){
+        for(User user : users){
+            if((user.getLogin().equals(login)) || (user.name.equals(name) && user.surname.equals(surname))){
+                users.remove(user);
+                User my_changed = new User(login, password, name, surname,isAdmin);
+                users.add(my_changed);
+                break;
+            }
+        }
+    }
     public List<User> getAllUsers() {
         return users;
     }

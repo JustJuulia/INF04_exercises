@@ -17,11 +17,12 @@ public class User {
         this.surname = surname;
         this.admin = admin;
     }
-    public String getfullName(){
-        String fullname = name + "   " + surname;
-        return fullname;
+    public String getName(){
+        return name;
     }
-
+    public String getSurname(){
+        return surname;
+    }
     public Map<String, String> getFullUser(){
         Map<String, String> full_user = new HashMap<>();
         full_user.put("login", login);

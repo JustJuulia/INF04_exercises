@@ -49,7 +49,10 @@ public class UserListAdapter extends BaseAdapter {
         }
 
         User user = users.get(position);
-
+        if(loggedInUserLogin == null){
+            Intent intent = ((AdminActivity) context).getIntent();
+            loggedInUserLogin = intent.getStringExtra("ADMIN_LOGIN");
+        }
         TextView dane = convertView.findViewById(R.id.imie_nazw);
         dane.setText("Imie: " + user.name + " Nazwisko: " + user.surname);
         if (user.getLogin().equals(loggedInUserLogin)) {
@@ -60,11 +63,15 @@ public class UserListAdapter extends BaseAdapter {
         }
         convertView.setOnClickListener(v -> {
             Intent intent = new Intent(context, AdminActivity.class);
+            intent.putExtra("LOGIN", user.getLogin());
+            intent.putExtra("PASSW", user.getPassword());
+            intent.putExtra("IsFirst", false);
             intent.putExtra("USER_LOGIN", user.getLogin());
             intent.putExtra("USER_PASSWORD", user.getPassword());
             intent.putExtra("USER_NAME", user.name);
             intent.putExtra("USER_SURNAME", user.surname);
             intent.putExtra("USER_ADMIN", user.admin);
+            intent.putExtra("ADMIN_LOGIN", loggedInUserLogin);
             context.startActivity(intent);
         });
         return convertView;

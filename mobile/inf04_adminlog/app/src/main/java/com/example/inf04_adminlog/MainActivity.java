@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         AllUsers userDatabase = AllUsers.getInstance();
-        User mainAdmin = new User("admin", "admin", "Admin", "User", true);
-        userDatabase.addUser(mainAdmin);
-        User testUser = new User("user1", "user1", "Julcia", "Some_surname", false);
-        userDatabase.addUser(testUser);
+        if (userDatabase.login("admin", "admin") == null) {
+            User mainAdmin = new User("admin", "admin", "Admin", "User", true);
+            userDatabase.addUser(mainAdmin);
+        }
 
         Button zatwierdzenie = findViewById(R.id.logowanie);
         zatwierdzenie.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
                     if (loggedInUser.admin) {
                         Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                         intent.putExtra("LOGIN", loggedInUser.getLogin());
+                        intent.putExtra("PASSW", loggedInUser.getPassword());
+                        if(enteredLogin.equals("admin") && enteredPassword.equals("admin")){
+                            intent.putExtra("IsFirst", true);
+                        }
+                        else{
+                            intent.putExtra("IsFirst", false);
+                        }
                         startActivity(intent);
                         finish();
                     } else {

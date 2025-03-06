@@ -1,15 +1,18 @@
 package com.example.inf04_adminlog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +36,18 @@ public class AdminActivity extends AppCompatActivity {
         });
         ListView all_people = findViewById(R.id.mojalista);
         String login = getIntent().getStringExtra("LOGIN");
+        Button dodaj = findViewById(R.id.Dodaj);
+        Button usun = findViewById(R.id.Usun);
+        Button wyjdz = findViewById(R.id.Wyjdz);
+        Button zmien = findViewById(R.id.Zmien);
+        CheckBox ca = findViewById(R.id.checkBox);
+        EditText im = findViewById(R.id.a_imie);
+        EditText nz = findViewById(R.id.a_nazwisko);
+        EditText lg = findViewById(R.id.a_login);
+        EditText ps = findViewById(R.id.a_passw);
         AllUsers userDatabase = AllUsers.getInstance();
         List<User> userList = userDatabase.getAllUsers();
+
         UserListAdapter adapter = new UserListAdapter(this, userList, login);
         all_people.setAdapter(adapter);
         String userLogin = getIntent().getStringExtra("USER_LOGIN");
@@ -42,19 +55,49 @@ public class AdminActivity extends AppCompatActivity {
         String userName = getIntent().getStringExtra("USER_NAME");
         String userSurname = getIntent().getStringExtra("USER_SURNAME");
         boolean isAdmin = getIntent().getBooleanExtra("USER_ADMIN", false);
-        EditText im = findViewById(R.id.a_imie);
-        EditText nz = findViewById(R.id.a_nazwisko);
-        EditText lg = findViewById(R.id.a_login);
-        EditText ps = findViewById(R.id.a_passw);
-        CheckBox ca = findViewById(R.id.checkBox);
+        boolean isFirst = getIntent().getBooleanExtra("IsFirst", false);
+        
         im.setText(userName);
         nz.setText(userSurname);
         lg.setText(userLogin);
         ps.setText(userPassword);
         ca.setChecked(isAdmin);
 
-
-
-
+        dodaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AllUsers userDatabase = AllUsers.getInstance();
+                User add_new = new User(lg.getText().toString(), ps.getText().toString(), im.getText().toString(), nz.getText().toString(),ca.isChecked());
+                userDatabase.addUser(add_new);
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        usun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AllUsers userDatabase = AllUsers.getInstance();
+                userDatabase.delteUser(lg.getText().toString());
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        wyjdz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        zmien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AllUsers userDatabase = AllUsers.getInstance();
+                userDatabase.changeUser(lg.getText().toString(), ps.getText().toString(), im.getText().toString(), nz.getText().toString(), ca.isChecked());
+                finish();
+                startActivity(getIntent());
+            }
+        });
     }
 }
