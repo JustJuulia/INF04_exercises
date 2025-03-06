@@ -85,16 +85,30 @@ public class AdminActivity extends AppCompatActivity {
             ps.addTextChangedListener(adm_tw);
         }
         else {
-            dodaj.setEnabled(true);
-            usun.setEnabled(true);
-            wyjdz.setEnabled(true);
-            all_people.setEnabled(true);
-            zmien.setEnabled(true);
-            im.setText(userName);
-            nz.setText(userSurname);
-            lg.setText(userLogin);
-            ps.setText(userPassword);
-            ca.setChecked(isAdmin);
+            if(login.equals("admin")){
+                ca.setEnabled(true);
+                dodaj.setEnabled(true);
+                usun.setEnabled(true);
+                wyjdz.setEnabled(true);
+                all_people.setEnabled(true);
+                zmien.setEnabled(true);
+                im.setText(userName);
+                nz.setText(userSurname);
+                lg.setText(userLogin);
+                ps.setText(userPassword);
+            }
+            else {
+                dodaj.setEnabled(true);
+                usun.setEnabled(true);
+                wyjdz.setEnabled(true);
+                all_people.setEnabled(true);
+                zmien.setEnabled(true);
+                im.setText(userName);
+                nz.setText(userSurname);
+                lg.setText(userLogin);
+                ps.setText(userPassword);
+                ca.setEnabled(false);
+            }
         }
 
         dodaj.setOnClickListener(new View.OnClickListener() {

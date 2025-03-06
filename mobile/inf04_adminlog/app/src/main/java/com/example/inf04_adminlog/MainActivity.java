@@ -26,10 +26,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         AllUsers userDatabase = AllUsers.getInstance();
-        if (userDatabase.login("admin", "admin") == null) {
-            User mainAdmin = new User("admin", "admin", "Admin", "User", true);
+        User mainAdmin = new User("admin", "admin", "Admin", "User", true);
+        boolean adminExists = false;
+
+        for (User user : userDatabase.getAllUsers()) {
+            if (user.getLogin().equals("admin")) {
+                adminExists = true;
+                break;
+            }
+        }
+
+        if (!adminExists) {
             userDatabase.addUser(mainAdmin);
         }
+
 
         Button zatwierdzenie = findViewById(R.id.logowanie);
         zatwierdzenie.setOnClickListener(new View.OnClickListener() {
