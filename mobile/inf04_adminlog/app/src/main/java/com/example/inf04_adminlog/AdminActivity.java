@@ -130,13 +130,16 @@ public class AdminActivity extends AppCompatActivity {
                 if(isFirst){
                     AllUsers userDatabase = AllUsers.getInstance();
                     userDatabase.changeTheUser(ps.getText().toString());
+                    Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    AllUsers userDatabase = AllUsers.getInstance();
+                    userDatabase.changeUser(lg.getText().toString(), ps.getText().toString(), im.getText().toString(), nz.getText().toString(), ca.isChecked());
                     finish();
                     startActivity(getIntent());
                 }
-                AllUsers userDatabase = AllUsers.getInstance();
-                userDatabase.changeUser(lg.getText().toString(), ps.getText().toString(), im.getText().toString(), nz.getText().toString(), ca.isChecked());
-                finish();
-                startActivity(getIntent());
             }
         });
     }
