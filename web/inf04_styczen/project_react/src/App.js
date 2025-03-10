@@ -101,11 +101,39 @@ function App() {
     </>)
   }
   const keys = Object.keys(data);
+  const [pickedBeer, setBeer] = useState(true);
+  const [pickedFruit, setFruit] = useState(true);
+  const [pickedHerb, setHerb] = useState(true);
+  const [pickedUndead, setUndead] = useState(true);
+  const [pickedVegetable, setVegetable] = useState(true);
   return (
     <>
+    <div class="d-flex">
+    <div class="form-check form-switch">
+      <input class="form-check-input ml-2" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked={pickedBeer} onClick={() => setBeer(!pickedBeer)}/>
+      <label class="form-check-label" for="flexSwitchCheckChecked"> Beer </label>
+    </div>
+    <div class="form-check form-switch ml-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked={pickedFruit} onClick={() => setFruit(!pickedFruit)}/>
+      <label class="form-check-label" for="flexSwitchCheckChecked"> Fruit </label>
+    </div>
+    <div class="form-check form-switch ml-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked={pickedBeer} onClick={() => setHerb(!pickedHerb)}/>
+      <label class="form-check-label" for="flexSwitchCheckChecked"> Herb </label>
+    </div>
+    <div class="form-check form-switch ml-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked={pickedBeer} onClick={() => setUndead(!pickedUndead)}/>
+      <label class="form-check-label" for="flexSwitchCheckChecked"> Undead </label>
+    </div>
+    <div class="form-check form-switch ml-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked={pickedBeer} onClick={() => setVegetable(!pickedVegetable)}/>
+      <label class="form-check-label" for="flexSwitchCheckChecked"> Vegetable </label>
+    </div>
+    </div>
     <div class="d-flex row">
       {keys.map((key) => {
         const urls = data[key];
+        if((key === "beer" && pickedBeer) || (key === "fruit" && pickedFruit) || (key === "herb" && pickedHerb) || (key === "undead" && pickedUndead) || (key === "vegetable" && pickedVegetable)){
         if (key === "beer") {
           return urls.map((url) => {
             return( <BeerComponent url={url} /> );
@@ -122,6 +150,10 @@ function App() {
             });
           }
         }
+      }
+      else{
+        return null;
+      }
       })}
       </div>
     </>
