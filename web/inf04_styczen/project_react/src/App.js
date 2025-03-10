@@ -79,9 +79,31 @@ function App() {
       </>
     );
   };
+  const OtherCategories = ({ url, firstVowel }) => {
+    const number = url.split("/")[2].split(".")[0];
+    const name = url.split("/")[1];
+    let [counter, addCounter] = useState(0);
+    return (<>
+    <div class="card" style={{ width: "18rem" }}>
+          <img
+            class="card-img-top"
+            src={url}
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{name}: {number}</h5>
+            <p class="card-text">This is {firstVowel ? 'an' : 'a'} {name}</p>
+            <button class="btn btn-primary" onClick={() => addCounter(counter + 1)}>
+              Click me! <span class="badge badge-secondary text-bg-secondary">{counter}</span>
+            </button>
+          </div>
+        </div>
+    </>)
+  }
   const keys = Object.keys(data);
   return (
     <>
+    <div class="d-flex row">
       {keys.map((key) => {
         const urls = data[key];
         if (key === "beer") {
@@ -89,8 +111,19 @@ function App() {
             return( <BeerComponent url={url} /> );
           });
         } else {
+          if(key[0] === "a" || key[0] === "e" || key[0] === "i" || key[0] === "o" || key[0] === "u" ){
+            return urls.map((url) => {
+              return( <OtherCategories url={url} firstVowel={true}/> );
+            });
+          }
+          else{
+            return urls.map((url) => {
+              return( <OtherCategories url={url} firstVowel={false}/> );
+            });
+          }
         }
       })}
+      </div>
     </>
   );
 }
